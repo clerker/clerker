@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140326011229) do
 
   create_table "accounts", id: false, force: true do |t|
     t.string   "id",              null: false
+    t.string   "secret",          null: false
     t.string   "name"
     t.string   "publishable_key"
     t.string   "access_token"

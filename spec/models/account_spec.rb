@@ -1,0 +1,24 @@
+require 'spec_helper'
+
+describe Account do
+  describe '.from_auth' do
+    let(:auth_hash){ double('OmniAuth::AuthHash', uid: 'acct_abc123', credentials: double(token: 'sk_abc123'), info: double(stripe_publishable_key: 'pk_abc123')) }
+    
+    it 'should create a new account if none exists' do
+      Account.should_receive(:find_by_id).with('acct_abc123').and_return(nil)
+      Account.should_receive(:new).with(id: 'acct_abc123').and_call_original
+      Account.any_instance.should_receive(:save!).and_return(true)
+      
+      Account.from_auth(auth_hash)
+    end
+    
+    it 'should update an existing account if there is one' do
+      account = build(:account, id: 'acct_abc123')
+      Account.should_receive(:find_by_id).with('acct_abc123').and_return(account)
+      Account.should_not_receive(:new)
+      account.should_receive(:save!).and_return(true)
+      
+      Account.from_auth(auth_hash)
+    end
+  end
+end
