@@ -1,5 +1,7 @@
 # Clerker for Stripe
 
+[![Build Status](https://travis-ci.org/clerker/clerker.svg?branch=master)](https://travis-ci.org/clerker/clerker)
+
 [Clerker](http://www.clerker.io) is an open-source micro-service
 that provides some common useful functionality for Stripe users.
 The functionality includes:
