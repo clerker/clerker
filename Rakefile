@@ -26,6 +26,12 @@ begin
     c.environment = ENV['RACK_ENV']
   end
   ActiveRecordMigrations.load_tasks
+  
+  require 'rspec/core/rake_task'
+  
+  RSpec::Core::RakeTask.new(:spec)
+  
+  task :default => :spec
 rescue LoadError => e
   puts "Not loading migration tasks."
 end
