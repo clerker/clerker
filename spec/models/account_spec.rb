@@ -21,4 +21,13 @@ describe Account do
       Account.from_auth(auth_hash)
     end
   end
+  
+  it 'should generate a unique secret on creation' do
+    a1 = Account.new
+    a1.valid?
+    expect(a1.secret).not_to be_nil
+    a2 = Account.new
+    a2.valid?
+    expect(a2.secret).not_to eq(a1.secret)
+  end
 end
