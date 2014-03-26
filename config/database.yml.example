@@ -1,0 +1,12 @@
+development:
+  adapter: postgresql
+  host: localhost
+  database: clerker-development
+test:
+  adapter: postgresql
+  host: localhost
+  database: clerker-test
+production:
+  adapter: postgresql
+  host: localhost
+  database: clerker-production
